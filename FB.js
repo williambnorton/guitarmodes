@@ -49,7 +49,7 @@ var FB_FretboardState =[ 	// static fretboards for now
 		}
 		
 	function FB_isSet(fb,color,note) {
-		console.log("FB_isSet(fb="+fb+" color="+color+",note="+note+") state="+FB_FretboardState[fb][color][note]);
+		//console.log("FB_isSet(fb="+fb+" color="+color+",note="+note+") state="+FB_FretboardState[fb][color][note]);
 
 		if (fb>=0 && fb<FB_FretboardState.length && color >= 0 && color < FB_colors.length && note >=0 && note <= FB_noteNames.length) {
 			return FB_FretboardState[fb][color][note];

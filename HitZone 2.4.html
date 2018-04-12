@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge" />
+	<title>HitZone 2</title>
+	<style>
+		html {
+			height:100%;
+		}
+		body {
+			background-color:#51240E;
+			margin:0;
+			height:100%;
+		}
+	</style>
+	<!-- copy these lines to your document head: -->
+
+	<meta name="viewport" content="user-scalable=yes, width=1024" />
+	<script type="text/javascript" src="HitZone%202.4.hyperesources/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="HitZone%202.4.hyperesources/music.js"></script>
+	<script type="text/javascript" src="HitZone%202.4.hyperesources/FB.js"></script>
+	
+	<script>
+$( document ).ready(function() {
+    console.log( "ready!" );
+	FB_makeScale(1,"A","Dorian");		//Mark the notes in the state
+	GUI_drawFretboards();			//and draw the correspondinh notes on the fretboard
+	$("#scaleLabel1").text("A"+" "+"Dorian");
+	console.log("="+$("#scaleLabel1").text());
+});
+	console.log("HERHER");
+
+//
+//	GUI
+//
+
+	/*
+	 *	drawFretboard - draw the guitar fretboards as a reflection of the state
+	 */
+	
+	function GUI_drawFretboards() {
+		console.log("GUI_drawFretboards() - the definitve drawing routine for the fretboard");
+		
+		GUI_clearFretBoardAll();   //start with a clean slate
+	
+		//FB_clearAllNotes();
+	/*
+		FB_setNote(1,"Green","A");
+		FB_setNote(1,"Blue","C-");
+		FB_setNote(1,"Blue","G");
+		FB_setNote(1,"Blue","E");
+	
+		FB_setNote(0,"Red","C-");
+		FB_setNote(2,"Blue","E");
+			
+		makeScale(2,"A","Mixolydian");
+		makeScale(0,"A","Pentatonic");
+		makeScale(1,"A","Arpeggio");
+	*/
+		function myRoutine(fb,color,note,state) {
+			switch (state) {
+			case 0:
+				// do not unset notes here - it seems to reset each color on every frtboard
+				//    	$("#"+color+"_"+note).css('backgroundColor', '#AAAAAA'); //reset color on button
+			  // 	 	$("#Fretboard_"+fb+" ."+note).css('background-image', 'url(' + "HitZone%202.4.hyperesources/String.png" + ')');  //set to dot on string
+				break;
+			case 1:
+					//console.log("GUI_drawFretboards() fb="+fb+" color="+color+" note="+note+" --->state="+state);
+				if (fb == 1 ) {
+					//color note on the button - only if on current fretboard #1
+		 			$("#"+color+"_"+note).css('backgroundColor', color);
+		 		}
+	    		//color the buttons on the fret board with the .note class
+	    		$("#Fretboard_"+fb+" ."+note).css('background-image', 'url(' + "HitZone%202.4.hyperesources/"+color+"String.png" + ')');  //set to dot on string
+				break;
+			}
+		}
+		FB_foreach( myRoutine );		
+	}
+	
+	//
+	//	clearFretBoard(fb,color) - clear this fretboard GUI element
+	//
+	function GUI_clearFretBoardColor(fb,color) {
+		//
+		//	Clear the graphical representation of the state
+		//
+		FB_noteNames.forEach(function(note,index,array) {
+			//var selector="#Fretboard_"+fb+" ."+note;
+			//console.log("GUI_clearFretBoardColor(fb="+fb+", color="+color);
+		//	if (FB_isNoteSet(fb,color,note)) {	//leave other colors alone
+				//console.log("GUI_clearFretBoardColor(): found a color to turn off: "+color+note);
+				$("#Fretboard_"+fb+" ."+note).css('background-image', 'url(' + "HitZone%202.4.hyperesources/String.png" + ')');  //reset to default string
+				$("#"+color+"_"+note).css('backgroundColor', '#AAAAAA');//RESET THE BUTTON AS WELL
+		//	}
+		});
+	}
+
+	//
+	//	GUI_clearFretBoardFB(fb) - clear a specific fretboard of cnotes of all colors
+	//
+	function GUI_clearFretBoardFB(fb) {
+		//console.log("GUI_clearFretBoardFB(fb="+fb+")");
+		FB_colors.forEach(function(color,index,array) {
+			console.log("GUI_clearFretBoardFB(fb="+fb+") clearing color "+color);
+			//GUI_clearFretBoardColor(fb,color);  //clear out these notes from state and GUI
+		});
+	}	
+
+	//
+	//	GUI_clearFretBoardAll() - clear every fretboard of all notes all colors
+	//
+	function GUI_clearFretBoardAll() {
+		console.log("GUI_clearFretBoardAll()- Clearing all fretboards");;
+
+		for (var fb=0; fb<FB_FretboardState.length; fb++) {
+			GUI_clearFretBoardFB(fb);
+		}
+	}
+
+	</script>
+	
+
+	<!-- end copy -->
+  </head>
+  <body>
+	<!-- copy these lines to your document: -->
+
+	<div id="hitzone2_hype_container" style="margin:auto;position:relative;width:1024px;height:768px;overflow:hidden;">
+		<script type="text/javascript" charset="utf-8" src="HitZone%202.4.hyperesources/hitzone2_hype_generated_script.js?81597"></script>
+	</div>
+
+	<!-- end copy -->
+	
+
+
+	<!-- text content for search engines: -->
+
+	<div style="display:none" aria-hidden=true>
+
+		<div></div>
+		<div>D#
+Eb
+</div>
+		<div>D</div>
+		<div>3</div>
+		<div>5</div>
+		<div>7</div>
+		<div>9</div>
+		<div>F</div>
+		<div>F#
+Gb
+</div>
+		<div>A</div>
+		<div>A#
+Bb
+</div>
+		<div>B</div>
+		<div>C</div>
+		<div>C#
+Db
+</div>
+		<div>Aeolian</div>
+		<div>0</div>
+		<div>GUI_clearFretBoardAll</div>
+		<div>FB_clearAllNotes</div>
+		<div>24</div>
+		<div>0
+</div>
+		<div>GUI_drawFretboards</div>
+		<div>  Red</div>
+		<div>Lydian</div>
+		<div>Clear</div>
+		<div>FB_dumpFretBoard</div>
+		<div>  Green</div>
+		<div>E</div>
+		<div>G#
+Ab
+</div>
+		<div>G</div>
+		<div>12</div>
+		<div>15</div>
+		<div>17</div>
+		<div>19</div>
+		<div>21</div>
+		<div>Locrian</div>
+		<div>2
+</div>
+		<div>Phrygian</div>
+		<div>1**1
+</div>
+		<div>Dorian</div>
+		<div>Mixolydian</div>
+		<div>  Blue</div>
+		<div>-1
+</div>
+		<div> Ionian</div>
+
+	</div>
+
+	<!-- end text content: -->
+
+  </body>
+</html>
